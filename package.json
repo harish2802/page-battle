@@ -1,0 +1,27 @@
+{
+  "name": "page-battle",
+  "version": "1.0.0",
+  "description": "Page Battle - notebook doodle stickman multiplayer elimination game",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "test": "node --test tests/engine.test.js tests/integration.test.js",
+    "build:css": "tailwindcss -c tailwind.config.cjs -i src/tailwind.css -o public/css/tailwind.css --minify"
+  },
+  "dependencies": {
+    "@fontsource-variable/material-symbols-outlined": "^5.3.9",
+    "@fontsource/epilogue": "^5.3.0",
+    "@fontsource/plus-jakarta-sans": "^5.3.0",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/container-queries": "^0.1.1",
+    "@tailwindcss/forms": "^0.5.11",
+    "tailwindcss": "^3.4.17"
+  }
+}

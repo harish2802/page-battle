@@ -1,0 +1,118 @@
+<main id="view" class="relative w-full h-[calc(100vh-80px)] mt-20 overflow-hidden flex items-center justify-center">
+<!-- Full-Bleed 2D Doodle Stickman Shooting Animation Arena Background -->
+<div aria-hidden="true" class="absolute inset-0 w-full h-full pointer-events-none select-none z-0">
+<svg class="w-full h-full" fill="none" preserveaspectratio="xMidYMid meet" viewbox="0 0 1400 700" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<!-- Stamp ink texture filter -->
+<filter height="120%" id="stamp-rough" width="120%" x="-10%" y="-10%">
+<feturbulence basefrequency="0.08" numoctaves="2" result="noise" type="fractalNoise"></feturbulence>
+<fedisplacementmap in="SourceGraphic" in2="noise" scale="2" xchannelselector="R" ychannelselector="G"></fedisplacementmap>
+</filter>
+</defs>
+<!-- Notebook Ground dashed guideline -->
+<line opacity="0.3" stroke="#1c1c17" stroke-dasharray="10 8" stroke-width="2.5" x1="100" x2="1300" y1="520" y2="520"></line>
+<!-- Bullet Trail Dash Lines across notebook -->
+<line class="anim-bullet-trail" opacity="0" stroke="#a03e40" stroke-dasharray="20 14" stroke-width="2.5" x1="320" x2="1080" y1="334" y2="334"></line>
+<line class="anim-bullet-trail" opacity="0" stroke="#ff8888" stroke-dasharray="8 8" stroke-width="1.5" x1="340" x2="1040" y1="337" y2="337"></line>
+<!-- Bullet Entity Fired Across Canvas -->
+<g class="anim-bullet">
+<circle cx="0" cy="24" fill="#a03e40" r="9" stroke="#05050a" stroke-width="2"></circle>
+<path d="M-10 20 L-22 16 M-10 28 L-22 32" stroke="#a03e40" stroke-linecap="round" stroke-width="2.5"></path>
+</g>
+<!-- LEFT ATTACKER STICKMAN (Cobalt Shades, Gun, Drawing & Shooting) -->
+<g class="anim-attacker">
+<g id="stickman-attacker" transform="translate(60, 60)">
+<!-- Head -->
+<circle cx="170" cy="260" fill="#fcf9f0" r="32" stroke="#05050a" stroke-width="4.5"></circle>
+<!-- Cool Cobalt Shades -->
+<rect fill="#2563eb" height="14" rx="2.5" stroke="#05050a" stroke-width="2.5" width="20" x="146" y="249"></rect>
+<rect fill="#2563eb" height="14" rx="2.5" stroke="#05050a" stroke-width="2.5" width="20" x="174" y="249"></rect>
+<line stroke="#05050a" stroke-width="3" x1="166" x2="174" y1="256" y2="256"></line>
+<!-- Grin -->
+<path d="M158 276 Q 172 284 186 274" stroke="#05050a" stroke-linecap="round" stroke-width="3"></path>
+<!-- Torso -->
+<line stroke="#05050a" stroke-linecap="round" stroke-width="5" x1="170" x2="170" y1="292" y2="405"></line>
+<!-- Legs -->
+<polyline points="170,405 130,485" stroke="#05050a" stroke-linecap="round" stroke-width="5"></polyline>
+<polyline points="170,405 210,485" stroke="#05050a" stroke-linecap="round" stroke-width="5"></polyline>
+<!-- Back arm on hip -->
+<polyline points="170,320 132,350 144,380" stroke="#05050a" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.5"></polyline>
+<!-- Dynamic Gun Arm (Rotating, aiming & firing) -->
+<g class="anim-gun-arm">
+<line stroke="#05050a" stroke-linecap="round" stroke-width="5" x1="170" x2="220" y1="320" y2="310"></line>
+<circle cx="220" cy="310" fill="#05050a" r="5"></circle>
+<!-- Hand-Drawn Sketch Blaster -->
+<g transform="translate(220, 296)">
+<rect fill="#f1eee5" height="18" rx="2.5" stroke="#05050a" stroke-width="3" width="46" x="0" y="3"></rect>
+<rect fill="#2563eb" height="24" rx="2" stroke="#05050a" stroke-width="2.5" width="11" x="42" y="0"></rect>
+<rect fill="#1c1c17" height="16" rx="2" width="9" x="5" y="19"></rect>
+<path d="M16 19 Q 21 24 16 28" fill="none" stroke="#05050a" stroke-width="2.2"></path>
+</g>
+</g>
+<!-- Hand-Drawn "PEW!" muzzle burst -->
+<g class="anim-pew" transform="translate(280, 292)">
+<path d="M0 11 L14 3 L11 14 L25 8 L17 19 L28 25 L17 28 L22 39 L11 31 L6 39 L6 25 L-3 22 Z" fill="#ff8888" stroke="#a03e40" stroke-width="2"></path>
+<text fill="#a03e40" font-family="Epilogue" font-size="28" font-weight="900" letter-spacing="1.5" x="24" y="2">PEW!!</text>
+<path d="M20 8 C 34 -6, 56 3, 68 -2" fill="none" stroke="#a03e40" stroke-dasharray="3 3" stroke-width="2"></path>
+</g>
+</g>
+</g>
+<!-- RIGHT OPPONENT TARGET STICKMAN (Recoils, dizzy eyes, gets stamped OUT) -->
+<g class="anim-target">
+<g id="stickman-target" transform="translate(1000, 60)">
+<!-- Head -->
+<circle cx="110" cy="260" fill="#fcf9f0" r="32" stroke="#05050a" stroke-width="4.5"></circle>
+<!-- Normal Eyes & Round Glasses (idle) -->
+<g class="anim-target-normal">
+<circle cx="98" cy="257" fill="none" r="8" stroke="#dc2626" stroke-width="2.5"></circle>
+<circle cx="122" cy="257" fill="none" r="8" stroke="#dc2626" stroke-width="2.5"></circle>
+<line stroke="#dc2626" stroke-width="2.5" x1="106" x2="114" y1="257" y2="257"></line>
+<circle cx="97" cy="257" fill="#05050a" r="2.5"></circle>
+<circle cx="121" cy="257" fill="#05050a" r="2.5"></circle>
+<path d="M100 276 Q 112 282 122 274" stroke="#05050a" stroke-linecap="round" stroke-width="3"></path>
+</g>
+<!-- Dizzy X Eyes (hit) -->
+<g class="anim-target-dizzy">
+<path d="M89 250 L103 264 M103 250 L89 264" stroke="#ba1a1a" stroke-linecap="round" stroke-width="3.5"></path>
+<path d="M115 250 L129 264 M129 250 L115 264" stroke="#ba1a1a" stroke-linecap="round" stroke-width="3.5"></path>
+<path d="M96 278 Q 104 270 112 278 T 126 275" fill="none" stroke="#ba1a1a" stroke-linecap="round" stroke-width="3"></path>
+<!-- Dizzy stars -->
+<text fill="#a03e40" font-family="Epilogue" font-size="22" font-weight="900" x="76" y="222">★</text>
+<text fill="#a03e40" font-family="Epilogue" font-size="18" font-weight="900" x="126" y="214">★</text>
+</g>
+<!-- Torso -->
+<line stroke="#05050a" stroke-linecap="round" stroke-width="5" x1="110" x2="110" y1="292" y2="405"></line>
+<!-- Legs -->
+<polyline points="110,405 80,485" stroke="#05050a" stroke-linecap="round" stroke-width="5"></polyline>
+<polyline points="110,405 140,485" stroke="#05050a" stroke-linecap="round" stroke-width="5"></polyline>
+<!-- Arms Flailing -->
+<polyline points="110,320 74,345 62,370" stroke="#05050a" stroke-linecap="round" stroke-width="4.5"></polyline>
+<polyline points="110,320 144,312 160,285" stroke="#05050a" stroke-linecap="round" stroke-width="4.5"></polyline>
+</g>
+</g>
+<!-- Rubber Stamp OUT! Slamming Down -->
+<g class="anim-stamp" filter="url(#stamp-rough)">
+<rect fill="#ffdad8" height="60" rx="5" stroke="#ba1a1a" stroke-dasharray="2 1" stroke-width="4.5" width="144" x="-72" y="-30"></rect>
+<rect fill="none" height="48" rx="3" stroke="#ba1a1a" stroke-width="2" width="130" x="-65" y="-24"></rect>
+<text fill="#ba1a1a" font-family="Epilogue" font-size="34" font-weight="900" letter-spacing="4" text-anchor="middle" x="0" y="12">OUT!</text>
+</g>
+</svg>
+</div>
+<!-- Center Overlaid Content: Only Title and Primary Action Button -->
+<div class="relative z-10 flex flex-col items-center justify-center text-center px-4 -mt-6">
+<!-- Big Doodle Page Title -->
+<h1 class="font-headline-xxl text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tight text-primary uppercase select-none drop-shadow-[3px_3px_0px_#fcf9f0]">
+    PAGE BATTLE
+  </h1>
+<!-- Marker / Sketch Double Underline -->
+<svg class="w-80 sm:w-[480px] md:w-[620px] lg:w-[760px] h-6 sm:h-8 -mt-1 sm:-mt-2 mb-10 sm:mb-12 text-secondary overflow-visible" fill="none" viewbox="0 0 600 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M6 16C120 4 320 6 594 12" stroke="currentColor" stroke-linecap="round" stroke-width="4.5"></path>
+<path d="M18 21C160 12 360 16 570 19" stroke="currentColor" stroke-dasharray="12 6" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+<!-- Primary Action Button: LET'S PLAY → -->
+<a class="group inline-flex items-center justify-center gap-4 px-10 sm:px-14 py-5 sm:py-6 bg-primary text-on-primary rounded-xl sm:rounded-2xl shadow-[6px_6px_0px_#a03e40] hover:shadow-[8px_8px_0px_#a03e40] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-1 active:translate-y-1 active:shadow-[2px_2px_0px_#a03e40] transition-all duration-200" href="#/modes" data-nav="modes">
+<span class="font-stamp-badge text-2xl sm:text-3xl md:text-4xl tracking-wider uppercase leading-none font-black">LET'S PLAY</span>
+<span class="material-symbols-outlined text-[32px] sm:text-[40px] text-surface-container-highest group-hover:translate-x-2 transition-transform">arrow_forward</span>
+</a>
+</div>
+</main>
