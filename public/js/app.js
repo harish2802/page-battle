@@ -791,15 +791,31 @@ net.on('error', (e) => {
 net.on('ended', (reason) => {
   closeModal();
   holdDead.clear(); holdOut.clear(); winnerReady = false; seenMatchId = null; animQueue = Promise.resolve(); animPending = 0; attackSubmitting = false; rollLock = false;
-  const msg = { expired: 'Your session expired.', replaced: 'You joined from another tab or device.', 'closed:expired': 'The room expired.', 'closed:empty': 'The room was closed.', 'closed:left': 'The match ended.' }[reason];
-  if (msg) toast(msg);
+  const msg = { expired: 'Your session expired — please rejoin.', replaced: 'You joined from another tab or device.', 'closed:expired': 'The room expired.', 'closed:empty': 'The room was closed.', 'closed:left': 'The match ended.' }[reason];
+  if (msg) toast(msg, reason === 'expired' ? 'err' : '');
   view = null;
   location.hash = '#/home';
   route();
 });
 
+let _reconnAttempt = 0;
 net.on('conn', (st) => {
-  $('#connBanner').classList.toggle('hidden', !(st === 'down' && inSession()));
+  const banner = $('#connBanner');
+  if (!banner) return;
+  if (st === 'down' && inSession()) {
+    _reconnAttempt += 1;
+    banner.textContent = `Connection lost — reconnecting… (attempt ${_reconnAttempt})`;
+    banner.classList.remove('hidden');
+    // Unlock any stuck locks so the player isn't frozen when they reconnect.
+    rollLock = false;
+    attackSubmitting = false;
+  } else if (st === 'open') {
+    _reconnAttempt = 0;
+    banner.classList.add('hidden');
+  } else if (st === 'idle') {
+    _reconnAttempt = 0;
+    banner.classList.add('hidden');
+  }
 });
 
 window.addEventListener('hashchange', () => route());

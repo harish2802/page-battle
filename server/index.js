@@ -151,7 +151,8 @@ export function createApp(overrides = {}) {
     ws.isAlive = true;
     ws.on('pong', () => { ws.isAlive = true; });
     // Auth must be the first message (keeps tokens out of URLs and access logs).
-    const authTimer = setTimeout(() => ws.close(4002, 'auth timeout'), 5000);
+    // 12s gives slow/waking clients time to send auth without false-expiring.
+    const authTimer = setTimeout(() => ws.close(4002, 'auth timeout'), 12_000);
     ws.on('message', (raw) => {
       let msg;
       try { msg = JSON.parse(raw.toString()); } catch { return hub.send(ws, { type: 'error', code: 'bad_json', message: 'Invalid message' }); }
@@ -182,13 +183,16 @@ export function createApp(overrides = {}) {
     ws.on('error', () => {});
   });
 
+  // Heartbeat: every 30s ping each socket; terminate any that did not reply
+  // since the last check.  Client pings every 25s so a healthy socket always
+  // resets isAlive before this fires.
   const heartbeat = setInterval(() => {
     for (const ws of wss.clients) {
       if (ws.isAlive === false) { ws.terminate(); continue; }
       ws.isAlive = false;
       try { ws.ping(); } catch { /* ignore */ }
     }
-  }, 15_000);
+  }, 30_000);
   heartbeat.unref?.();
 
   hub.start();
