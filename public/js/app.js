@@ -552,12 +552,20 @@ function renderAttack(s) {
   box.innerHTML = targets.map((t) => {
     const p = s.match.players.find((x) => x.id === t.playerId);
     const sel = attackSel?.targetId === t.playerId;
+    // Stage colour badges: empty=grey, head=blue, body=green, gun=orange, bullet=red
+    const stageBadgeColor = ['#78767b','#2563eb','#16a34a','#d97706','#dc2626'];
     return `<div class="pb-card-sm p-3 ${sel ? 'ring-4 ring-secondary' : ''}" data-opp="${esc(t.playerId)}">
       <button type="button" data-pick-opp="${esc(t.playerId)}" class="w-full flex items-center gap-2 mb-2 text-left">${dot(p.color, 16)}<span class="font-headline-md text-[17px] uppercase truncate">${esc(p.name)}</span><span class="ml-auto font-label-md text-[12px] text-on-surface-variant">${t.digits.length}/5 slots</span></button>
       <div class="grid grid-cols-5 gap-1.5">${DIGITS.map((d) => {
         const live = t.digits.includes(d);
         const on = sel && attackSel.digit === d;
-        return `<button type="button" class="target-slot ${on ? 'sel' : ''} py-2 font-headline-md text-[20px]" data-pick-slot="${esc(t.playerId)}:${d}" ${live ? '' : 'disabled'} aria-label="${esc(p.name)} slot ${d}${live ? '' : ' (destroyed)'}">${d}</button>`;
+        const stage = p.slots[d].stage;
+        const stageName = STAGE_NAMES[stage];
+        const badgeColor = stageBadgeColor[stage] || '#78767b';
+        return `<button type="button" class="target-slot ${on ? 'sel' : ''} py-1 font-headline-md text-[18px] flex flex-col items-center gap-0" data-pick-slot="${esc(t.playerId)}:${d}" ${live ? '' : 'disabled'} aria-label="${esc(p.name)} slot ${d}: ${live ? stageName : 'destroyed'}" title="Slot ${d}: ${live ? stageName : 'DESTROYED'}">
+          <span class="leading-tight">${d}</span>
+          <span class="slot-stage-badge" style="background:${live ? badgeColor : '#c0bab2'};opacity:${live ? '1' : '0.5'}">${live ? stageName : 'DEAD'}</span>
+        </button>`;
       }).join('')}</div></div>`;
   }).join('');
   $$('[data-pick-opp]', box).forEach((b) => b.addEventListener('click', () => { attackSel = { targetId: b.dataset.pickOpp, digit: null }; renderAttack(snap()); }));
